@@ -10,3 +10,6 @@
 8) Evidence status: external Lean proof imported as `ErdosLab/Problems/P0379.lean`.
 9) Theorem name: `erdos_379` (states the limsup result in ENat form).
 10) Local compilation confirmed via `tools/check.sh`, so claim can be marked solved.
+11) Formal statement match: `S` is defined via `sSup { r | ∀ k ∈ Ico 1 n, ∃ p, p.Prime ∧ p^r ∣ choose n k }`, matching "largest integer" with `p` depending on `k`.
+12) Formal conclusion: `Filter.atTop.limsup (fun n ↦ (S n : ENat)) = ⊤` matches `limsup S(n) = ∞`.
+13) Note: for each `n > 1` the set is nonempty and bounded (e.g., `k = 1` gives divisibility by `n`), so `sSup` coincides with a maximum.
