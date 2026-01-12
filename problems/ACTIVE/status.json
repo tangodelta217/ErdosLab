@@ -1,7 +1,7 @@
 {
   "problem_id": "ACTIVE",
   "claim": {
-    "state": "partial"
+    "state": "solved"
   },
   "frozen_statement": {
     "file": "statement/frozen_v1.md"
