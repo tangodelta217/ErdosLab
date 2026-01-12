@@ -1,0 +1,17 @@
+{
+  "problem_id": "P0379",
+  "claim": {
+    "state": "solved"
+  },
+  "frozen_statement": {
+    "file": "statement/frozen_v1.md"
+  },
+  "evidence": [
+    {
+      "type": "lean",
+      "file": "ErdosLab/Problems/P0379.lean",
+      "theorem": "erdos_379"
+    }
+  ],
+  "title": "Erdos Problem #379"
+}
