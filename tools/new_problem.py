@@ -29,6 +29,9 @@ def load_status(path: Path) -> Dict[str, Any]:
 
 def main() -> int:
     args = sys.argv[1:]
+    if any(arg in {"-h", "--help"} for arg in args):
+        usage()
+        return 0
     if len(args) < 1 or len(args) > 2:
         usage()
         return 2

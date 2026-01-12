@@ -27,6 +27,14 @@ def remove_path(path: Path) -> None:
 
 def main() -> int:
     args = sys.argv[1:]
+    yes = False
+    filtered = []
+    for arg in args:
+        if arg in {"-y", "--yes"}:
+            yes = True
+        else:
+            filtered.append(arg)
+    args = filtered
     if len(args) != 1:
         usage()
         return 2
@@ -42,14 +50,14 @@ def main() -> int:
         return 1
 
     if active_dir.exists() or active_dir.is_symlink():
-        if not confirm(
+        if not yes and not confirm(
             f"problems/ACTIVE exists. Replace it with {problem_id}? [y/N]: "
         ):
             print("Aborted.")
             return 1
         remove_path(active_dir)
     else:
-        if not confirm(f"Set problems/ACTIVE to {problem_id}? [y/N]: "):
+        if not yes and not confirm(f"Set problems/ACTIVE to {problem_id}? [y/N]: "):
             print("Aborted.")
             return 1
 

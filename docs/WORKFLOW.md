@@ -19,3 +19,8 @@
 ## Requesting review
 - Request review after tests pass and link the relevant proof/evidence.
 - Reviewers (including Codex) should use `AGENTS.md` for review guidance.
+
+## Automation (optional)
+- Use `python3 tools/auto_problem.py 379 --title "Erdos Problem #379"` to scaffold a new problem.
+- The script uses `tools/new_problem.py` and `tools/set_active.py`, freezes the statement, prefills docs, and runs checks.
+- Useful flags: `--no-fetch` (offline placeholders), `--no-lean` (skip Lean import), `--skip-checks` (skip policy/build).
