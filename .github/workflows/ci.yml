@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Policy checks
+        run: python3 tools/policy/check_repo.py
+      - name: Lean build
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package: .
+      - name: Audit no sorry
+        run: bash tools/lean/audit_no_sorry.sh
+      - name: Audit no axiom
+        run: bash tools/lean/audit_no_axiom.sh
+      - name: Audit no unsafe
+        run: bash tools/lean/audit_no_unsafe.sh

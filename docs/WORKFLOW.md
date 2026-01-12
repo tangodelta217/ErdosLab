@@ -12,6 +12,8 @@
 ## PRs and CI as judge
 - Every change goes through a PR and CI is the judge.
 - CI should run `./tools/check.sh` as the primary entrypoint.
+- No merge sin CI verde.
+- Enable branch protection and required checks in GitHub.
 
 ## Requesting review
 - Request review after tests pass and link the relevant proof/evidence.
