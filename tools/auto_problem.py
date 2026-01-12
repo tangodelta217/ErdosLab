@@ -62,6 +62,11 @@ def parse_args() -> argparse.Namespace:
         help="Skip policy/build checks.",
     )
     parser.add_argument(
+        "--no-forum",
+        action="store_true",
+        help="Skip generating the forum post template.",
+    )
+    parser.add_argument(
         "--keep-active",
         action="store_true",
         help="Do not update problems/ACTIVE.",
@@ -147,6 +152,21 @@ def find_theorem_name(text: str, number: int) -> Optional[str]:
 
 def run(cmd: list[str], root: Path) -> None:
     subprocess.run(cmd, check=True, cwd=root)
+
+
+def run_capture(cmd: list[str], root: Path) -> Optional[str]:
+    try:
+        result = subprocess.run(
+            cmd,
+            check=True,
+            cwd=root,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+    except subprocess.CalledProcessError:
+        return None
+    return result.stdout.strip()
 
 
 def write_text(path: Path, content: str) -> None:
@@ -273,6 +293,60 @@ def render_blueprint() -> str:
 
         ## Notes
         - TODO
+        """
+    )
+
+
+def render_forum_post(
+    number: int,
+    problem_url: str,
+    forum_url: str,
+    accessed: str,
+    latex_url: Optional[str],
+    latex_hash: Optional[str],
+    statement_text: Optional[str],
+    lean_file: Optional[str],
+    lean_url: Optional[str],
+    theorem_name: Optional[str],
+    claim_state: str,
+    commit_sha: Optional[str],
+) -> str:
+    statement = statement_text or "TBD (fill from frozen statement)."
+    latex_line = "unavailable"
+    if latex_url:
+        latex_line = f"{latex_url} (sha256: {latex_hash or 'unavailable'})"
+    lean_file_line = lean_file or "none"
+    lean_source_line = lean_url or "none"
+    theorem_line = theorem_name or "unknown"
+    commit_line = commit_sha or "unknown"
+    return textwrap.dedent(
+        f"""\
+        # Forum post draft: Erdos Problem #{number}
+
+        Status:
+        - claim.state: {claim_state}
+        - repo commit: {commit_line}
+
+        Sources:
+        - problem page: {problem_url} (accessed {accessed})
+        - forum thread: {forum_url}
+        - latex snapshot: {latex_line}
+
+        Statement (from frozen_v1):
+        {statement}
+
+        Evidence:
+        - Lean file: {lean_file_line}
+        - Lean source: {lean_source_line}
+        - theorem: {theorem_line}
+        - reproducible build: `bash tools/check.sh`
+        - policy check: `python3 tools/policy/check_repo.py`
+
+        Manual checklist before posting:
+        - [ ] Statement matches frozen_v1 (compare hash if available).
+        - [ ] Bibliography verified (replace NO VERIFICADO).
+        - [ ] Lean proof corresponds to the frozen statement.
+        - [ ] CI green for the PR.
         """
     )
 
@@ -440,6 +514,33 @@ def main() -> int:
         write_text(status_path, json.dumps(data, indent=2, sort_keys=False))
         if not args.skip_checks:
             run([sys.executable, "tools/policy/check_repo.py"], root)
+
+    status_path = problem_dir / "status.json"
+    status_data = json.loads(status_path.read_text(encoding="utf-8"))
+    claim_state = status_data.get("claim", {}).get("state", "partial")
+
+    if not args.no_forum:
+        commit_sha = run_capture(["git", "rev-parse", "--short", "HEAD"], root)
+        lean_file = (
+            f"ErdosLab/Problems/{problem_id}.lean" if lean_imported else None
+        )
+        write_text(
+            report_dir / "forum_post.md",
+            render_forum_post(
+                number,
+                problem_url,
+                forum_url,
+                accessed,
+                latex_url if not args.no_fetch else None,
+                latex_hash,
+                statement_text,
+                lean_file,
+                lean_url,
+                theorem_name,
+                claim_state,
+                commit_sha,
+            ),
+        )
 
     print("Done.")
     return 0
