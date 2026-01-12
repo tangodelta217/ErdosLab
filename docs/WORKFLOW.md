@@ -14,6 +14,7 @@
 - CI should run `./tools/check.sh` as the primary entrypoint.
 - No merge sin CI verde.
 - Enable branch protection and required checks in GitHub.
+- El workflow Lean Action CI (docgen) corre solo en main/manual y no es gate de PRs.
 
 ## Requesting review
 - Request review after tests pass and link the relevant proof/evidence.
