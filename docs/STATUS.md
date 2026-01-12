@@ -1,7 +1,7 @@
 # Status
 
 ## Implemented today
-- Lean 4 + mathlib project scaffold (lakefile, toolchain, basic module).
+- Lean 4 + mathlib project scaffold (lakefile.toml or lakefile.lean, toolchain, basic module).
 - Policy-as-code checks for problem status and evidence.
 - Local checks (no sorry/admit/axiom/unsafe) and CI workflow.
 - Single-problem workflow with problems/TEMPLATE and problems/ACTIVE.
