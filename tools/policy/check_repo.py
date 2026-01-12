@@ -185,17 +185,40 @@ def validate_problem(status_path: Path, root: Path) -> List[str]:
 def main() -> int:
     root = Path(__file__).resolve().parents[2]
     problems_dir, created = ensure_problems_dir(root)
+    global_errors: List[str] = []
 
     if created:
         print("Created problems/ placeholder; no problems to validate yet.")
 
-    status_files = sorted(problems_dir.glob("*/status.json"))
-    if not status_files:
-        print("No status.json files found under problems/.")
-        print("Summary: 0 problems checked, 0 errors.")
-        return 0
+    active_dir = problems_dir / "ACTIVE"
+    active_dirs = [path for path in problems_dir.rglob("ACTIVE") if path.is_dir()]
+
+    if not active_dir.is_dir():
+        global_errors.append("missing required directory: problems/ACTIVE")
+
+    extra_active = [path for path in active_dirs if path != active_dir]
+    if extra_active:
+        extras = ", ".join(str(path.relative_to(root)) for path in extra_active)
+        global_errors.append(f"only one ACTIVE directory is allowed; extra: {extras}")
+
+    if active_dir.is_dir():
+        active_status = active_dir / "status.json"
+        if not active_status.exists():
+            global_errors.append("missing required file: problems/ACTIVE/status.json")
+
+    status_files = sorted(
+        path
+        for path in problems_dir.glob("*/status.json")
+        if path.parent.name != "TEMPLATE"
+    )
 
     total_errors = 0
+    if global_errors:
+        total_errors += len(global_errors)
+        print("Global errors:")
+        for error in global_errors:
+            print(f"  - {error}")
+
     for status_path in status_files:
         errors = validate_problem(status_path, root)
         if errors:

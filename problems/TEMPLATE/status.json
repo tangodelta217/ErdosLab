@@ -1,0 +1,10 @@
+{
+  "problem_id": "TEMPLATE",
+  "claim": {
+    "state": "partial"
+  },
+  "frozen_statement": {
+    "file": "statement/frozen_v1.md"
+  },
+  "evidence": []
+}
