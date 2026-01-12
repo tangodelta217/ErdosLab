@@ -1,0 +1,5 @@
+# Code owners
+
+tools/policy/ @REPO_OWNERS
+.github/workflows/ @REPO_OWNERS
+ErdosLab/ @REPO_OWNERS
