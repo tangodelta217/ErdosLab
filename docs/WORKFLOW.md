@@ -25,5 +25,6 @@
 - The script uses `tools/new_problem.py` and `tools/set_active.py`, freezes the statement, prefills docs, and runs checks.
 - The literature scout runs by default and writes `candidates.md/json`, `queries.json`, and `triage.md` (best-effort; offline-safe).
 - For manual ChatGPT Pro research, use `problems/<ID>/literature/chatgpt_prompt.md`, paste the JSON output into `chatgpt_response.md`, then run `python3 tools/literature_ingest.py PXXXX` to merge candidates with provenance `chatgpt_pro_manual`.
+- Solver scaffolding runs by default; use `problems/<ID>/solver/runs/<RUN_ID>/planner_prompt.md`, paste output into `planner_response.md`, then run `python3 tools/solver_ingest.py PXXXX --run latest` to store plans and update `solver/best`.
 - Useful flags: `--no-fetch` (offline placeholders), `--no-lean` (skip Lean import), `--skip-checks` (skip policy/build).
 - It also writes `problems/<ID>/report/forum_post.md` as a forum-ready draft (skip with `--no-forum`).
