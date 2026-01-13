@@ -76,6 +76,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Allow overwriting an existing Lean file.",
     )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Reuse an existing problem directory instead of failing.",
+    )
     return parser.parse_args()
 
 
@@ -97,7 +102,7 @@ def fetch_url(url: str) -> Tuple[bytes, str]:
 
 
 def extract_statement(html_text: str) -> Tuple[Optional[str], Optional[str]]:
-    match = re.search(r'<div id="content">(.*?)</div>', html_text, re.S)
+    match = re.search(r'<div id="content"[^>]*>(.*?)</div>', html_text, re.S)
     if not match:
         return None, None
     raw_html = match.group(1).strip()
@@ -220,25 +225,24 @@ def render_writeup(
 ) -> str:
     proof = proof_link or "none found"
     statement = statement_link or "none found"
-    summary_lines = "\n".join([f"- TODO (line {i})" for i in range(1, 11)])
-    return textwrap.dedent(
-        f"""\
-        # Writeup
-
-        Summary (10-20 lines):
-        {summary_lines}
-
-        Sources:
-        - Problem page: {problem_url} (accessed {accessed})
-        - Forum thread: {forum_url}
-        - External Lean proof: {proof}
-        - External Lean statement: {statement}
-        - Paper reference: NO VERIFICADO
-
-        Evidence status:
-        - {evidence_note}
-        """
-    )
+    summary_lines = [f"- TODO (line {i})" for i in range(1, 11)]
+    lines = [
+        "# Writeup",
+        "",
+        "Summary (10-20 lines):",
+        *summary_lines,
+        "",
+        "Sources:",
+        f"- Problem page: {problem_url} (accessed {accessed})",
+        f"- Forum thread: {forum_url}",
+        f"- External Lean proof: {proof}",
+        f"- External Lean statement: {statement}",
+        "- Paper reference: NO VERIFICADO",
+        "",
+        "Evidence status:",
+        f"- {evidence_note}",
+    ]
+    return "\n".join(lines) + "\n"
 
 
 def render_primary_sources(
@@ -365,20 +369,21 @@ def main() -> int:
     forum_url = args.forum_url or f"https://www.erdosproblems.com/forum/thread/{number}"
     accessed = dt.date.today().isoformat()
 
-    run(
-        [
-            sys.executable,
-            "tools/new_problem.py",
-            problem_id,
-            *( [args.title] if args.title else [] ),
-        ],
-        root,
-    )
+    problem_dir = root / "problems" / problem_id
+    if not problem_dir.exists() or not args.resume:
+        run(
+            [
+                sys.executable,
+                "tools/new_problem.py",
+                problem_id,
+                *( [args.title] if args.title else [] ),
+            ],
+            root,
+        )
 
     if not args.keep_active:
         run([sys.executable, "tools/set_active.py", "--yes", problem_id], root)
 
-    problem_dir = root / "problems" / problem_id
     statement_dir = problem_dir / "statement"
     literature_dir = problem_dir / "literature"
     report_dir = problem_dir / "report"
