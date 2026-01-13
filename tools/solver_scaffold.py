@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 import literature_scout
+import llm_utils
 
 DEFAULT_MAX_PLANS = int(os.getenv("SOLVER_MAX_PLANS", "8"))
 DEFAULT_MAX_LITERATURE = int(os.getenv("SOLVER_MAX_LITERATURE", "8"))
@@ -394,6 +395,12 @@ def run_scaffold(
     )
     (run_dir / "planner_prompt_with_literature.md").write_text(
         prompt_with_lit, encoding="utf-8"
+    )
+    llm_utils.write_model_prompts(
+        run_dir / "llm" / "planner",
+        prompt_with_lit,
+        response_extension=".md",
+        placeholder=PLACEHOLDER_RESPONSE,
     )
     return run_dir
 

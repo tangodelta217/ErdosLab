@@ -22,13 +22,21 @@ def now_iso() -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Ingest manual ChatGPT Pro solver output into a run folder."
+        description="Ingest manual solver output into a run folder."
     )
     parser.add_argument("problem", help="Problem id (e.g. 379 or P0379).")
     parser.add_argument(
         "--run",
         help="Run id to ingest (default: latest).",
         default="latest",
+    )
+    parser.add_argument(
+        "--file",
+        help="Override planner_response.md path (relative to repo root).",
+    )
+    parser.add_argument(
+        "--source",
+        help="Override source label stored in plans metadata.",
     )
     return parser.parse_args()
 
@@ -58,7 +66,12 @@ def resolve_run_dir(problem_dir: Path, run_id: str) -> Tuple[Optional[Path], Opt
     return run_dir, None
 
 
-def normalize_plan(raw: Dict[str, Any], errors: List[str], index: int) -> Dict[str, Any]:
+def normalize_plan(
+    raw: Dict[str, Any],
+    errors: List[str],
+    index: int,
+    source: str,
+) -> Dict[str, Any]:
     plan = dict(raw)
     if not isinstance(plan.get("strategy_name"), str):
         errors.append(f"plan[{index}] missing strategy_name")
@@ -91,7 +104,7 @@ def normalize_plan(raw: Dict[str, Any], errors: List[str], index: int) -> Dict[s
     plan["expected_payoff"] = payoff
     plan["difficulty"] = difficulty
     plan["status"] = "NEEDS_REVIEW"
-    plan["source"] = "chatgpt_pro_manual"
+    plan["source"] = source
     plan["ingested_at"] = now_iso()
     return plan
 
@@ -159,14 +172,20 @@ def main() -> int:
         print(f"ERROR: missing problem directory: {problem_dir}")
         return 1
 
-    run_dir, err = resolve_run_dir(problem_dir, args.run)
-    if err or run_dir is None:
-        print(f"ERROR: {err}")
-        return 1
+    run_dir = None
+    if args.file:
+        response_path = Path(args.file)
+        if not response_path.is_absolute():
+            response_path = root / response_path
+    else:
+        run_dir, err = resolve_run_dir(problem_dir, args.run)
+        if err or run_dir is None:
+            print(f"ERROR: {err}")
+            return 1
+        response_path = run_dir / "planner_response.md"
 
-    response_path = run_dir / "planner_response.md"
     if not response_path.exists():
-        print(f"ERROR: missing planner_response.md in {run_dir}")
+        print(f"ERROR: missing planner response at {response_path}")
         return 1
 
     response_text = response_path.read_text(encoding="utf-8")
@@ -180,15 +199,24 @@ def main() -> int:
         print("ERROR: response JSON missing plans list.")
         return 1
 
+    source = args.source
+    if not source:
+        if response_path.name == "planner_response.md":
+            source = "chatgpt_pro_manual"
+        else:
+            source = "manual_llm"
+
     errors: List[str] = []
     plans: List[Dict[str, Any]] = []
     for idx, raw in enumerate(plans_raw):
         if not isinstance(raw, dict):
             errors.append(f"plan[{idx}] is not an object")
             continue
-        plans.append(normalize_plan(raw, errors, idx))
+        plans.append(normalize_plan(raw, errors, idx, source))
 
     plans.sort(key=plan_score, reverse=True)
+    if run_dir is None:
+        run_dir = response_path.parent
     plans_dir = run_dir / "plans"
     plans_dir.mkdir(parents=True, exist_ok=True)
     write_plan_files(plans_dir, plans)
@@ -205,7 +233,11 @@ def main() -> int:
             notes += f"- {err}\n"
         notes_path.write_text(notes.strip() + "\n", encoding="utf-8")
 
-    print(f"Ingested {len(plans)} plans into {run_dir.relative_to(root)}.")
+    try:
+        rel_run = run_dir.relative_to(root)
+    except ValueError:
+        rel_run = run_dir
+    print(f"Ingested {len(plans)} plans into {rel_run}.")
     if errors:
         print("Warnings:")
         for err in errors:
