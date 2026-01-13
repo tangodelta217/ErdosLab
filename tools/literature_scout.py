@@ -15,6 +15,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.parse import quote_plus
 from urllib.request import Request, urlopen
 
+import llm_utils
 DEFAULT_MAX_RESULTS = int(os.getenv("LITERATURE_SCOUT_MAX_RESULTS", "5"))
 DEFAULT_MAX_CANDIDATES = int(os.getenv("LITERATURE_SCOUT_MAX_CANDIDATES", "20"))
 DEFAULT_CACHE_TTL_DAYS = int(os.getenv("LITERATURE_SCOUT_CACHE_TTL_DAYS", "14"))
@@ -51,6 +52,7 @@ STOPWORDS = {
 }
 
 CHATGPT_PROMPT_VERSION = "v1"
+LLM_PLACEHOLDER = "# Paste model output below\n\n"
 
 
 def now_iso() -> str:
@@ -829,6 +831,18 @@ def write_chatgpt_files(
             "# Paste ChatGPT Pro output below\n\n",
             encoding="utf-8",
         )
+
+
+def write_llm_prompts(
+    literature_dir: Path,
+    prompt_text: str,
+) -> None:
+    llm_utils.write_model_prompts(
+        literature_dir / "llm",
+        prompt_text,
+        response_extension=".md",
+        placeholder=LLM_PLACEHOLDER,
+    )
 
 
 def run_literature_scout(

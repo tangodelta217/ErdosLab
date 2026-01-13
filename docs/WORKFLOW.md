@@ -25,6 +25,7 @@
 - The script uses `tools/new_problem.py` and `tools/set_active.py`, freezes the statement, prefills docs, and runs checks.
 - The literature scout runs by default and writes `candidates.md/json`, `queries.json`, and `triage.md` (best-effort; offline-safe).
 - For manual ChatGPT Pro research, use `problems/<ID>/literature/chatgpt_prompt.md`, paste the JSON output into `chatgpt_response.md`, then run `python3 tools/literature_ingest.py PXXXX` to merge candidates with provenance `chatgpt_pro_manual`.
+- For multi-model literature runs, use `problems/<ID>/literature/llm/*_prompt.md` and ingest with `python3 tools/literature_ingest.py PXXXX --response <path> --source <label>`.
 - Solver scaffolding runs by default; use `problems/<ID>/solver/runs/<RUN_ID>/planner_prompt_with_literature.md` (preferred) or `planner_prompt.md`, paste output into `planner_response.md`, run `python3 tools/solver_validate.py PXXXX --run latest`, then run `python3 tools/solver_ingest.py PXXXX --run latest` to store plans and update `solver/best`.
 - For multi-model planning, use `problems/<ID>/solver/runs/<RUN_ID>/llm/planner/*_prompt.md` and ingest with `python3 tools/solver_ingest.py PXXXX --file <path> --source <label>`.
 - Configure model labels with `LLM_MODELS="gpt-5.2-pro,gemini-deepthink"` (comma-separated).

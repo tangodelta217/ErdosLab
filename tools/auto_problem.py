@@ -522,6 +522,7 @@ def main() -> int:
         statement_text=statement_text,
     )
     literature_scout.write_chatgpt_files(literature_dir, prompt_text)
+    literature_scout.write_llm_prompts(literature_dir, prompt_text)
 
     try:
         literature_scout.run_literature_scout(

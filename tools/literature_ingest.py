@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ingest manual ChatGPT Pro literature output into candidates files."""
+"""Ingest manual literature output into candidates files."""
 
 from __future__ import annotations
 
@@ -25,12 +25,16 @@ def now_iso() -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Ingest manual ChatGPT Pro literature output."
+        description="Ingest manual literature output."
     )
     parser.add_argument("problem", help="Problem id (e.g. 379 or P0379).")
     parser.add_argument(
         "--response",
         help="Path to chatgpt_response.md (defaults to problems/<ID>/literature/chatgpt_response.md).",
+    )
+    parser.add_argument(
+        "--source",
+        help="Override provenance label (default: chatgpt_pro_manual or manual_llm).",
     )
     return parser.parse_args()
 
@@ -95,7 +99,11 @@ def normalize_url(id_type: str, value: str, url: Optional[str]) -> Optional[str]
     return None
 
 
-def normalize_candidate(raw: Dict[str, Any], errors: List[str]) -> Optional[Dict[str, Any]]:
+def normalize_candidate(
+    raw: Dict[str, Any],
+    errors: List[str],
+    source: str,
+) -> Optional[Dict[str, Any]]:
     id_type = raw.get("id_type")
     if not isinstance(id_type, str) or id_type not in ALLOWED_ID_TYPES:
         errors.append(f"candidate missing/invalid id_type: {raw.get('id_type')}")
@@ -142,9 +150,9 @@ def normalize_candidate(raw: Dict[str, Any], errors: List[str]) -> Optional[Dict
         "status": "NEEDS_REVIEW",
         "provenance": [
             {
-                "provider": "chatgpt_pro_manual",
+                "provider": source,
                 "query": "manual",
-                "source_url": "manual:chatgpt_pro",
+                "source_url": f"manual:{source}",
                 "fetched_at": now_iso(),
                 "cache_hit": False,
             }
@@ -173,7 +181,11 @@ def main() -> int:
         return 2
 
     literature_dir = root / "problems" / problem_id / "literature"
-    response_path = Path(args.response) if args.response else (literature_dir / "chatgpt_response.md")
+    response_path = (
+        Path(args.response)
+        if args.response
+        else (literature_dir / "chatgpt_response.md")
+    )
     if not response_path.exists():
         print(f"ERROR: response file not found: {response_path}")
         return 1
@@ -189,13 +201,20 @@ def main() -> int:
         print("ERROR: response JSON missing candidates list.")
         return 1
 
+    source = args.source
+    if not source:
+        if response_path.name == "chatgpt_response.md":
+            source = "chatgpt_pro_manual"
+        else:
+            source = "manual_llm"
+
     errors: List[str] = []
     manual_candidates: List[Dict[str, Any]] = []
     for raw in manual_candidates_raw:
         if not isinstance(raw, dict):
             errors.append("candidate entry is not an object")
             continue
-        candidate = normalize_candidate(raw, errors)
+        candidate = normalize_candidate(raw, errors, source)
         if candidate:
             manual_candidates.append(candidate)
 
