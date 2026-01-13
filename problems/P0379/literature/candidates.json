@@ -1,0 +1,696 @@
+{
+  "problem_id": "P0379",
+  "generated_at": "2026-01-13T00:53:17Z",
+  "offline": false,
+  "solver_used_scout": false,
+  "queries": [
+    {
+      "provider": "openalex",
+      "query": "Erdos Problem #379",
+      "url": "https://api.openalex.org/works?search=Erdos+Problem+%23379&per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "crossref",
+      "query": "Erdos Problem #379",
+      "url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "arxiv",
+      "query": "Erdos Problem #379",
+      "url": "http://export.arxiv.org/api/query?search_query=all:Erdos+Problem+%23379&start=0&max_results=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "zbmath",
+      "query": "Erdos Problem #379",
+      "url": "https://api.zbmath.org/v1/document/_search?search_string=Erdos+Problem+%23379&results_per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "semantic_scholar",
+      "query": "Erdos Problem #379",
+      "url": null,
+      "cache_hit": false,
+      "status": "skipped",
+      "error": "missing SEMANTIC_SCHOLAR_API_KEY",
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "openalex",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "crossref",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "arxiv",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "zbmath",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "https://api.zbmath.org/v1/document/_search?search_string=binomial+coefficient+denote+depending+divisible+integer&results_per_page=5",
+      "cache_hit": false,
+      "status": "error",
+      "error": "HTTP Error 404: Not Found",
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "semantic_scholar",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": null,
+      "cache_hit": false,
+      "status": "skipped",
+      "error": "missing SEMANTIC_SCHOLAR_API_KEY",
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "openalex",
+      "query": "Erdos problem 379",
+      "url": "https://api.openalex.org/works?search=Erdos+problem+379&per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "crossref",
+      "query": "Erdos problem 379",
+      "url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "arxiv",
+      "query": "Erdos problem 379",
+      "url": "http://export.arxiv.org/api/query?search_query=all:Erdos+problem+379&start=0&max_results=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "zbmath",
+      "query": "Erdos problem 379",
+      "url": "https://api.zbmath.org/v1/document/_search?search_string=Erdos+problem+379&results_per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "semantic_scholar",
+      "query": "Erdos problem 379",
+      "url": null,
+      "cache_hit": false,
+      "status": "skipped",
+      "error": "missing SEMANTIC_SCHOLAR_API_KEY",
+      "timestamp": "2026-01-13T00:53:18Z"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "10.3840/07002242",
+      "id_type": "doi",
+      "title": "The Number of Binomial Coefficients Divisible by a Fixed Power of a Prime",
+      "authors": [],
+      "year": "2007",
+      "url": "https://doi.org/10.3840/07002242",
+      "confidence": 0.6499999999999999,
+      "reasons": [
+        "keyword match: binomial, coefficient, divisible, prime",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.3840/002242",
+      "id_type": "doi",
+      "title": "The Number of Binomial Coefficients Divisible by a Fixed Power of a Prime",
+      "authors": [],
+      "year": "2007",
+      "url": "https://doi.org/10.3840/002242",
+      "confidence": 0.6499999999999999,
+      "reasons": [
+        "keyword match: binomial, coefficient, divisible, prime",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1080/00029890.1971.11992769",
+      "id_type": "doi",
+      "title": "How often Does an Integer Occur as a Binomial Coefficient?",
+      "authors": [
+        "David Singmaster"
+      ],
+      "year": "1971",
+      "url": "https://doi.org/10.1080/00029890.1971.11992769",
+      "confidence": 0.6,
+      "reasons": [
+        "keyword match: binomial, coefficient, integer",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "1004.4623v4",
+      "id_type": "arxiv",
+      "title": "Products and sums divisible by central binomial coefficients",
+      "authors": [
+        "Zhi-Wei Sun"
+      ],
+      "year": "2010",
+      "url": "https://arxiv.org/abs/1004.4623v4",
+      "confidence": 0.6,
+      "reasons": [
+        "keyword match: binomial, coefficient, divisible",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "1301.7651v3",
+      "id_type": "arxiv",
+      "title": "Some divisibility properties of binomial and q-binomial coefficients",
+      "authors": [
+        "Victor J. W. Guo",
+        "C. Krattenthaler"
+      ],
+      "year": "2013",
+      "url": "https://arxiv.org/abs/1301.7651v3",
+      "confidence": 0.6,
+      "reasons": [
+        "keyword match: binomial, coefficient, some",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "0901.3691v2",
+      "id_type": "arxiv",
+      "title": "Generalizations of a theorem about the binomial coefficient",
+      "authors": [
+        "Shaohua Zhang"
+      ],
+      "year": "2009",
+      "url": "https://arxiv.org/abs/0901.3691v2",
+      "confidence": 0.5499999999999999,
+      "reasons": [
+        "keyword match: binomial, coefficient",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1111/j.1467-9892.2010.00684.x",
+      "id_type": "doi",
+      "title": "A negative binomial integer-valued GARCH model",
+      "authors": [
+        "Fukang Zhu"
+      ],
+      "year": "2010",
+      "url": "https://doi.org/10.1111/j.1467-9892.2010.00684.x",
+      "confidence": 0.5499999999999999,
+      "reasons": [
+        "keyword match: binomial, integer",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "1906.07652v1",
+      "id_type": "arxiv",
+      "title": "On the divisibility of binomial coefficients",
+      "authors": [
+        "Silvia Casacuberta"
+      ],
+      "year": "2019",
+      "url": "https://arxiv.org/abs/1906.07652v1",
+      "confidence": 0.5499999999999999,
+      "reasons": [
+        "keyword match: binomial, coefficient",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "2112.14422v2",
+      "id_type": "arxiv",
+      "title": "Products of extended binomial coefficients and their partial factorizations",
+      "authors": [
+        "Lara Du",
+        "Jeffrey Lagarias",
+        "Wijit Yangjit"
+      ],
+      "year": "2021",
+      "url": "https://arxiv.org/abs/2112.14422v2",
+      "confidence": 0.5499999999999999,
+      "reasons": [
+        "keyword match: binomial, coefficient",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.31219/osf.io/upehd",
+      "id_type": "doi",
+      "title": "Extension of Binomial Series with Optimized Binomial Coefficient",
+      "authors": [
+        "Chinnaraji Annamalai"
+      ],
+      "year": "2022",
+      "url": "https://doi.org/10.31219/osf.io/upehd",
+      "confidence": 0.5499999999999999,
+      "reasons": [
+        "keyword match: binomial, coefficient",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "1108.6015v1",
+      "id_type": "arxiv",
+      "title": "Asymptotically normal distribution of some tree families relevant for phylogenetics, and of partitions without singletons",
+      "authors": [
+        "Eva Czabarka",
+        "Peter L. Erdos",
+        "Virginia Johnson",
+        "Anne Kupczok",
+        "Laszlo A. Szekely"
+      ],
+      "year": "2011",
+      "url": "https://arxiv.org/abs/1108.6015v1",
+      "confidence": 0.49999999999999994,
+      "reasons": [
+        "keyword match: some",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "Erdos Problem #379",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+Problem+%23379&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        },
+        {
+          "provider": "arxiv",
+          "query": "Erdos problem 379",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+problem+379&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:18Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1103/physrev.75.486",
+      "id_type": "doi",
+      "title": "The Radiation Theories of Tomonaga, Schwinger, and Feynman",
+      "authors": [
+        "Freeman J. Dyson"
+      ],
+      "year": "1949",
+      "url": "https://doi.org/10.1103/physrev.75.486",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "openalex",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.2307/2306205",
+      "id_type": "doi",
+      "title": "On a Problem of Erdos",
+      "authors": [
+        "Hansraj Gupta"
+      ],
+      "year": "1950",
+      "url": "https://doi.org/10.2307/2306205",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "Erdos Problem #379",
+          "source_url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        },
+        {
+          "provider": "crossref",
+          "query": "Erdos problem 379",
+          "source_url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
+          "fetched_at": "2026-01-13T00:53:18Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.2307/2002950",
+      "id_type": "doi",
+      "title": "On a Problem in Elementary Number Theory and a Combinatorial Problem",
+      "authors": [
+        "P. Erdos"
+      ],
+      "year": "1964",
+      "url": "https://doi.org/10.2307/2002950",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "Erdos Problem #379",
+          "source_url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        },
+        {
+          "provider": "crossref",
+          "query": "Erdos problem 379",
+          "source_url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
+          "fetched_at": "2026-01-13T00:53:18Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1007/bf00531932",
+      "id_type": "doi",
+      "title": "On the foundations of combinatorial theory I. Theory of Mbius Functions",
+      "authors": [
+        "Gian Carlo Rota"
+      ],
+      "year": "1964",
+      "url": "https://doi.org/10.1007/bf00531932",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "openalex",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.2307/2316535",
+      "id_type": "doi",
+      "title": "On the Fundamental Problem of Mathematics",
+      "authors": [
+        "P. Erdos"
+      ],
+      "year": "1972",
+      "url": "https://doi.org/10.2307/2316535",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "crossref",
+          "query": "Erdos Problem #379",
+          "source_url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        },
+        {
+          "provider": "crossref",
+          "query": "Erdos problem 379",
+          "source_url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
+          "fetched_at": "2026-01-13T00:53:18Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1137/1122006",
+      "id_type": "doi",
+      "title": "Limit Measures Arising in the Asympyotic Theory of Symmetric Groups. I.",
+      "authors": [
+        "A. M. Vershik",
+        "A. A. Shimdt"
+      ],
+      "year": "1977",
+      "url": "https://doi.org/10.1137/1122006",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "openalex",
+          "query": "Erdos Problem #379",
+          "source_url": "https://api.openalex.org/works?search=Erdos+Problem+%23379&per_page=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        },
+        {
+          "provider": "openalex",
+          "query": "Erdos problem 379",
+          "source_url": "https://api.openalex.org/works?search=Erdos+problem+379&per_page=5",
+          "fetched_at": "2026-01-13T00:53:18Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1214/aop/1024404422",
+      "id_type": "doi",
+      "title": "The two-parameter Poisson-Dirichlet distribution derived from a stable subordinator",
+      "authors": [
+        "Jim Pitman",
+        "Marc Yor"
+      ],
+      "year": "1997",
+      "url": "https://doi.org/10.1214/aop/1024404422",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "openalex",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "math/0002171v1",
+      "id_type": "arxiv",
+      "title": "On Erdos's elementary method in the asymptotic theory of partitions",
+      "authors": [
+        "Melvyn B. Nathanson"
+      ],
+      "year": "2000",
+      "url": "https://arxiv.org/abs/math/0002171v1",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: arxiv"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "arxiv",
+          "query": "Erdos Problem #379",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+Problem+%23379&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        },
+        {
+          "provider": "arxiv",
+          "query": "Erdos problem 379",
+          "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+problem+379&start=0&max_results=5",
+          "fetched_at": "2026-01-13T00:53:18Z",
+          "cache_hit": true
+        }
+      ]
+    },
+    {
+      "id": "10.1090/s0894-0347-01-00385-x",
+      "id_type": "doi",
+      "title": "Cluster algebras I: Foundations",
+      "authors": [
+        "Sergey Fomin",
+        "Andrei Zelevinsky"
+      ],
+      "year": "2001",
+      "url": "https://doi.org/10.1090/s0894-0347-01-00385-x",
+      "confidence": 0.44999999999999996,
+      "reasons": [
+        "no keyword match in title",
+        "identifier: doi"
+      ],
+      "status": "NEEDS_REVIEW",
+      "provenance": [
+        {
+          "provider": "openalex",
+          "query": "binomial coefficient denote depending divisible integer",
+          "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
+          "fetched_at": "2026-01-13T00:53:17Z",
+          "cache_hit": true
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "zbmath query 'binomial coefficient denote depending divisible integer': HTTP Error 404: Not Found"
+  ]
+}

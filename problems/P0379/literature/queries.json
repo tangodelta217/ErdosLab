@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-01-13T00:53:17Z",
+  "queries": [
+    {
+      "provider": "openalex",
+      "query": "Erdos Problem #379",
+      "url": "https://api.openalex.org/works?search=Erdos+Problem+%23379&per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "crossref",
+      "query": "Erdos Problem #379",
+      "url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "arxiv",
+      "query": "Erdos Problem #379",
+      "url": "http://export.arxiv.org/api/query?search_query=all:Erdos+Problem+%23379&start=0&max_results=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "zbmath",
+      "query": "Erdos Problem #379",
+      "url": "https://api.zbmath.org/v1/document/_search?search_string=Erdos+Problem+%23379&results_per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "semantic_scholar",
+      "query": "Erdos Problem #379",
+      "url": null,
+      "cache_hit": false,
+      "status": "skipped",
+      "error": "missing SEMANTIC_SCHOLAR_API_KEY",
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "openalex",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "crossref",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "arxiv",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:17Z"
+    },
+    {
+      "provider": "zbmath",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": "https://api.zbmath.org/v1/document/_search?search_string=binomial+coefficient+denote+depending+divisible+integer&results_per_page=5",
+      "cache_hit": false,
+      "status": "error",
+      "error": "HTTP Error 404: Not Found",
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "semantic_scholar",
+      "query": "binomial coefficient denote depending divisible integer",
+      "url": null,
+      "cache_hit": false,
+      "status": "skipped",
+      "error": "missing SEMANTIC_SCHOLAR_API_KEY",
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "openalex",
+      "query": "Erdos problem 379",
+      "url": "https://api.openalex.org/works?search=Erdos+problem+379&per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "crossref",
+      "query": "Erdos problem 379",
+      "url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "arxiv",
+      "query": "Erdos problem 379",
+      "url": "http://export.arxiv.org/api/query?search_query=all:Erdos+problem+379&start=0&max_results=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "zbmath",
+      "query": "Erdos problem 379",
+      "url": "https://api.zbmath.org/v1/document/_search?search_string=Erdos+problem+379&results_per_page=5",
+      "cache_hit": true,
+      "status": "ok",
+      "error": null,
+      "timestamp": "2026-01-13T00:53:18Z"
+    },
+    {
+      "provider": "semantic_scholar",
+      "query": "Erdos problem 379",
+      "url": null,
+      "cache_hit": false,
+      "status": "skipped",
+      "error": "missing SEMANTIC_SCHOLAR_API_KEY",
+      "timestamp": "2026-01-13T00:53:18Z"
+    }
+  ]
+}
