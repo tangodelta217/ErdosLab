@@ -32,6 +32,8 @@
 - Configure model labels with `LLM_MODELS="gpt-5.2-pro,gemini-deepthink"` (comma-separated).
 - Auto-seed plans (no LLM) with `python3 tools/solver_autoplan.py PXXXX --run latest`.
 - Run compute experiments with `python3 tools/experiment_runner.py PXXXX` (uses `compute/manifest.json`).
+- Use `python3 tools/pattern_miner.py --input problems/PXXXX/compute/results/<RUN>/sequence.json` to inspect numeric patterns.
+- Run scoring loops with `python3 tools/optimizer_runner.py PXXXX` (uses `compute/optimizer.json`).
 - Scaffold Lean prompts with `python3 tools/formalizer_loop.py PXXXX --run latest` and validate with `python3 tools/formalizer_loop.py PXXXX --run latest --check`.
 - For iterative Lean attempts: `python3 tools/formalizer_loop.py PXXXX --run latest --new-attempt`, then check with `--attempt latest --check`.
 - Use `python3 tools/lean_search.py PXXXX --run latest` to scaffold Mathlib search queries (`#find`, `simp?`, `by?`).

@@ -1,0 +1,7 @@
+{
+  "objective": "maximize",
+  "iterations": 10,
+  "seed_start": 1,
+  "top_k": 3,
+  "command": ["python3", "compute/experiments/score_stub.py", "--seed", "{seed}"]
+}
