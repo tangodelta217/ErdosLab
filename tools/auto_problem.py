@@ -510,19 +510,6 @@ def main() -> int:
     if not blueprint_path.exists():
         write_text(blueprint_path, render_blueprint())
 
-    try:
-        solver_scaffold.run_scaffold(
-            problem_dir=problem_dir,
-            problem_id=problem_id,
-            problem_number=number,
-            title=args.title,
-            statement_text=statement_text,
-            problem_url=problem_url,
-            forum_url=forum_url,
-        )
-    except Exception as exc:  # pylint: disable=broad-except
-        print(f"WARNING: solver scaffold failed: {exc}")
-
     prompt_text = literature_scout.render_chatgpt_prompt(
         problem_id=problem_id,
         problem_number=number,
@@ -546,6 +533,19 @@ def main() -> int:
         )
     except Exception as exc:  # pylint: disable=broad-except
         print(f"WARNING: literature scout failed: {exc}")
+
+    try:
+        solver_scaffold.run_scaffold(
+            problem_dir=problem_dir,
+            problem_id=problem_id,
+            problem_number=number,
+            title=args.title,
+            statement_text=statement_text,
+            problem_url=problem_url,
+            forum_url=forum_url,
+        )
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"WARNING: solver scaffold failed: {exc}")
 
     if not args.skip_checks:
         run(["bash", "tools/check.sh"], root)

@@ -14,6 +14,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import literature_scout
 
 DEFAULT_MAX_PLANS = int(os.getenv("SOLVER_MAX_PLANS", "8"))
+DEFAULT_MAX_LITERATURE = int(os.getenv("SOLVER_MAX_LITERATURE", "8"))
 PLACEHOLDER_RESPONSE = "# Paste ChatGPT Pro output below\n\n"
 PLACEHOLDER_NOTES = "# Notes\n\n"
 
@@ -133,6 +134,76 @@ def planner_prompt(
         "- expected_payoff and difficulty must be numbers in [0,1].\n"
         "- Do not assert correctness; everything is speculative.\n"
     )
+
+
+def render_literature_candidates(
+    problem_dir: Path, max_items: int = DEFAULT_MAX_LITERATURE
+) -> str:
+    candidates_path = problem_dir / "literature" / "candidates.json"
+    if not candidates_path.exists():
+        return "- none (missing candidates.json)"
+    try:
+        payload = json.loads(candidates_path.read_text(encoding="utf-8"))
+    except Exception:
+        return "- none (invalid candidates.json)"
+    candidates = payload.get("candidates")
+    if not isinstance(candidates, list) or not candidates:
+        return "- none (no candidates listed)"
+
+    lines: List[str] = []
+    for idx, candidate in enumerate(candidates[:max_items], start=1):
+        if not isinstance(candidate, dict):
+            continue
+        title = literature_scout.ascii_safe(str(candidate.get("title", ""))).strip()
+        title = title or "untitled"
+        year = literature_scout.ascii_safe(str(candidate.get("year", ""))).strip()
+        year = year or "n.d."
+        authors_raw = candidate.get("authors")
+        if isinstance(authors_raw, list):
+            authors = [
+                literature_scout.ascii_safe(str(author)).strip()
+                for author in authors_raw
+                if str(author).strip()
+            ]
+        else:
+            authors = []
+        authors_text = ", ".join(authors) if authors else "unknown authors"
+        id_value = literature_scout.ascii_safe(str(candidate.get("id", ""))).strip()
+        id_value = id_value or "unknown id"
+        id_type = literature_scout.ascii_safe(
+            str(candidate.get("id_type", "id"))
+        ).strip()
+        id_type = id_type or "id"
+        url = literature_scout.ascii_safe(str(candidate.get("url", ""))).strip()
+        confidence = candidate.get("confidence")
+        if isinstance(confidence, (int, float)):
+            confidence_text = f"{confidence:.2f}"
+        else:
+            confidence_text = "n/a"
+        status = literature_scout.ascii_safe(
+            str(candidate.get("status", "UNKNOWN"))
+        ).strip()
+        reasons_raw = candidate.get("reasons")
+        reasons: List[str] = []
+        if isinstance(reasons_raw, list):
+            for reason in reasons_raw:
+                reason_text = literature_scout.ascii_safe(str(reason)).strip()
+                if reason_text:
+                    reasons.append(reason_text)
+        reasons_text = "; ".join(reasons[:3]) if reasons else ""
+
+        line = (
+            f"- [{idx}] {title} ({year}), {authors_text}. "
+            f"{id_type}: {id_value}. confidence: {confidence_text}. "
+            f"status: {status}."
+        )
+        if url:
+            line += f" url: {url}."
+        if reasons_text:
+            line += f" reasons: {reasons_text}."
+        lines.append(line)
+
+    return "\n".join(lines) if lines else "- none (no usable candidates)"
 
 
 def default_checklist() -> str:
@@ -313,6 +384,16 @@ def run_scaffold(
     )
     (run_dir / "planner_prompt.md").write_text(
         prompt.rstrip() + "\n", encoding="utf-8"
+    )
+    literature_block = render_literature_candidates(problem_dir)
+    prompt_with_lit = (
+        prompt.rstrip()
+        + "\n\nLiterature candidates (UNVERIFIED):\n"
+        + literature_block
+        + "\n"
+    )
+    (run_dir / "planner_prompt_with_literature.md").write_text(
+        prompt_with_lit, encoding="utf-8"
     )
     return run_dir
 
