@@ -29,5 +29,8 @@
 - For multi-model planning, use `problems/<ID>/solver/runs/<RUN_ID>/llm/planner/*_prompt.md` and ingest with `python3 tools/solver_ingest.py PXXXX --file <path> --source <label>`.
 - Configure model labels with `LLM_MODELS="gpt-5.2-pro,gemini-deepthink"` (comma-separated).
 - Auto-seed plans (no LLM) with `python3 tools/solver_autoplan.py PXXXX --run latest`.
+- Run compute experiments with `python3 tools/experiment_runner.py PXXXX` (uses `compute/manifest.json`).
+- Scaffold Lean prompts with `python3 tools/formalizer_loop.py PXXXX --run latest` and validate with `python3 tools/formalizer_loop.py PXXXX --run latest --check`.
+- Generate a semantic audit checklist with `python3 tools/semantic_audit.py PXXXX`.
 - Useful flags: `--no-fetch` (offline placeholders), `--no-lean` (skip Lean import), `--skip-checks` (skip policy/build).
 - It also writes `problems/<ID>/report/forum_post.md` as a forum-ready draft (skip with `--no-forum`).

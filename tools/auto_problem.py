@@ -16,7 +16,10 @@ from pathlib import Path
 from typing import Iterable, Optional, Tuple
 from urllib.request import urlopen
 
+import formalizer_loop
 import literature_scout
+import semantic_audit
+import solver_autoplan
 import solver_scaffold
 
 
@@ -534,8 +537,9 @@ def main() -> int:
     except Exception as exc:  # pylint: disable=broad-except
         print(f"WARNING: literature scout failed: {exc}")
 
+    run_dir = None
     try:
-        solver_scaffold.run_scaffold(
+        run_dir = solver_scaffold.run_scaffold(
             problem_dir=problem_dir,
             problem_id=problem_id,
             problem_number=number,
@@ -546,6 +550,33 @@ def main() -> int:
         )
     except Exception as exc:  # pylint: disable=broad-except
         print(f"WARNING: solver scaffold failed: {exc}")
+        run_dir = None
+
+    if run_dir is not None:
+        try:
+            solver_autoplan.write_autoplan(
+                problem_dir=problem_dir,
+                problem_id=problem_id,
+                run_dir=run_dir,
+            )
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"WARNING: solver autoplan failed: {exc}")
+        try:
+            formalizer_loop.write_scaffold(
+                problem_dir=problem_dir,
+                problem_id=problem_id,
+                run_dir=run_dir,
+            )
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"WARNING: formalizer scaffold failed: {exc}")
+        try:
+            semantic_audit.write_audit(
+                root=root,
+                problem_id=problem_id,
+                problem_dir=problem_dir,
+            )
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"WARNING: semantic audit failed: {exc}")
 
     if not args.skip_checks:
         run(["bash", "tools/check.sh"], root)
