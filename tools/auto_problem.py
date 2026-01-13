@@ -17,6 +17,7 @@ from typing import Iterable, Optional, Tuple
 from urllib.request import urlopen
 
 import formalizer_loop
+import lean_search
 import literature_scout
 import semantic_audit
 import solver_autoplan
@@ -184,6 +185,11 @@ def write_text(path: Path, content: str) -> None:
     path.write_text(content.rstrip() + "\n", encoding="utf-8")
 
 
+def write_if_missing(path: Path, content: str) -> None:
+    if not path.exists():
+        write_text(path, content)
+
+
 def render_frozen_statement(
     number: int,
     problem_url: str,
@@ -303,6 +309,54 @@ def render_blueprint() -> str:
 
         ## Notes
         - TODO
+        """
+    )
+
+
+def render_process_log() -> str:
+    return textwrap.dedent(
+        """\
+        # Process Log
+
+        Use this log to track progress, failed attempts, and decisions.
+
+        Format (one entry per line):
+        - YYYY-MM-DD: action / result / notes
+        """
+    )
+
+
+def render_ai_usage() -> str:
+    return textwrap.dedent(
+        """\
+        # AI Usage
+
+        Record which tools/models were used and what they contributed.
+
+        Checklist:
+        - [ ] Literature scout used (sources, date, notes)
+        - [ ] Manual LLM used (model, prompt location, scope)
+        - [ ] Lean formalizer assistance (model, files)
+        - [ ] Compute experiments (scripts, parameters)
+
+        Notes:
+        - 
+        """
+    )
+
+
+def render_exposition() -> str:
+    return textwrap.dedent(
+        """\
+        # Exposition (Human-Readable)
+
+        Summarize the proof idea in plain language after formal verification.
+
+        Sections to include:
+        - Statement (short)
+        - Key ideas
+        - Main lemmas
+        - Why the proof works
         """
     )
 
@@ -495,6 +549,9 @@ def main() -> int:
             evidence_note,
         ),
     )
+    write_if_missing(report_dir / "process_log.md", render_process_log())
+    write_if_missing(report_dir / "ai_usage.md", render_ai_usage())
+    write_if_missing(report_dir / "exposition.md", render_exposition())
     write_text(
         literature_dir / "primary_sources.md",
         render_primary_sources(
@@ -570,6 +627,14 @@ def main() -> int:
             )
         except Exception as exc:  # pylint: disable=broad-except
             print(f"WARNING: formalizer scaffold failed: {exc}")
+        try:
+            lean_search.write_scaffold(
+                problem_dir=problem_dir,
+                problem_id=problem_id,
+                run_dir=run_dir,
+            )
+        except Exception as exc:  # pylint: disable=broad-except
+            print(f"WARNING: lean search scaffold failed: {exc}")
         try:
             semantic_audit.write_audit(
                 root=root,

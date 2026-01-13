@@ -1,8 +1,8 @@
 # Semantic Audit Checklist
 
-Status: INCOMPLETE
+Status: LEGACY
 Reviewer: TBD
-Notes: TBD
+Notes: Pre-gate solved status; review pending.
 
 - [ ] Quantifiers and domains match the frozen statement.
 - [ ] All hypotheses and side conditions are present.

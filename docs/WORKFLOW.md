@@ -8,6 +8,7 @@
 ## Solved / Disproved
 - A result is "Solved" or "Disproved" only with a Lean QED or a verifiable certificate.
 - No `sorry` or `admit` in proofs used to claim status.
+- For `solved/disproved`, `statement/semantic_audit.md` must be marked `Status: COMPLETE` (or `LEGACY` for pre-gate entries).
 
 ## PRs and CI as judge
 - Every change goes through a PR and CI is the judge.
@@ -32,6 +33,9 @@
 - Auto-seed plans (no LLM) with `python3 tools/solver_autoplan.py PXXXX --run latest`.
 - Run compute experiments with `python3 tools/experiment_runner.py PXXXX` (uses `compute/manifest.json`).
 - Scaffold Lean prompts with `python3 tools/formalizer_loop.py PXXXX --run latest` and validate with `python3 tools/formalizer_loop.py PXXXX --run latest --check`.
+- For iterative Lean attempts: `python3 tools/formalizer_loop.py PXXXX --run latest --new-attempt`, then check with `--attempt latest --check`.
+- Use `python3 tools/lean_search.py PXXXX --run latest` to scaffold Mathlib search queries (`#find`, `simp?`, `by?`).
 - Generate a semantic audit checklist with `python3 tools/semantic_audit.py PXXXX`.
 - Useful flags: `--no-fetch` (offline placeholders), `--no-lean` (skip Lean import), `--skip-checks` (skip policy/build).
 - It also writes `problems/<ID>/report/forum_post.md` as a forum-ready draft (skip with `--no-forum`).
+- Maintain `problems/<ID>/report/process_log.md`, `problems/<ID>/report/ai_usage.md`, and `problems/<ID>/report/exposition.md` for traceability.

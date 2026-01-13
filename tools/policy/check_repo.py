@@ -17,6 +17,8 @@ ALLOWED_STATES = {
     "ambiguous",
 }
 
+ALLOWED_AUDIT_STATUS = {"COMPLETE", "LEGACY"}
+
 
 def ensure_problems_dir(root: Path) -> Tuple[Path, bool]:
     problems_dir = root / "problems"
@@ -146,6 +148,24 @@ def validate_problem(status_path: Path, root: Path) -> List[str]:
         for req in required_files:
             if not req.exists():
                 errors.append(f"missing required file: {req.relative_to(root)}")
+
+        audit_path = status_path.parent / "statement" / "semantic_audit.md"
+        if not audit_path.exists():
+            errors.append(
+                f"missing required file: {audit_path.relative_to(root)}"
+            )
+        else:
+            try:
+                audit_text = audit_path.read_text(encoding="utf-8")
+            except Exception as exc:  # pylint: disable=broad-except
+                errors.append(f"semantic audit could not be read: {exc}")
+            else:
+                match = re.search(r"^Status:\s*(\w+)", audit_text, re.M)
+                status = match.group(1) if match else None
+                if status not in ALLOWED_AUDIT_STATUS:
+                    errors.append(
+                        "semantic audit status must be COMPLETE or LEGACY"
+                    )
 
         evidence = data.get("evidence")
         if not isinstance(evidence, list):

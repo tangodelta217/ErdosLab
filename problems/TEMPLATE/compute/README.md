@@ -2,6 +2,7 @@
 
 Use `manifest.json` to list runnable experiments. Each experiment should be
 reproducible and write its own outputs (or rely on the runner logs).
+Store scripts under `compute/experiments/`.
 
 Example manifest entry:
 

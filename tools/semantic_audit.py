@@ -100,6 +100,10 @@ def write_audit(
     audit_lines = [
         "# Semantic Audit Checklist",
         "",
+        "Status: INCOMPLETE",
+        "Reviewer: TBD",
+        "Notes: TBD",
+        "",
         f"- problem_id: {problem_id}",
         f"- generated_at: {now_iso()}",
     ]
