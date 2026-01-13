@@ -4,3 +4,4 @@ This directory is populated by `python3 tools/auto_problem.py` or `python3 tools
 Use `planner_prompt_with_literature.md` when available, validate with `python3 tools/solver_validate.py`,
 then ingest with `python3 tools/solver_ingest.py`.
 Auto-seed plans live in `planner_autoplan.json` (replace with human/LLM plans).
+Lean search scaffolds are in `solver/runs/<RUN_ID>/lean/search/` (see `tools/lean_search.py`).

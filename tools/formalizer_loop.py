@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import re
 import subprocess
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -14,6 +15,8 @@ import llm_utils
 import solver_scaffold
 
 PLACEHOLDER_LEAN = "-- Paste Lean code below (no sorry/admit/axiom/unsafe)\n\nimport Mathlib\n\n"
+ATTEMPT_PREFIX = "attempt_"
+ATTEMPT_PATTERN = re.compile(r"attempt_(\d+)\.lean$")
 
 
 def now_iso() -> str:
@@ -31,6 +34,15 @@ def parse_args() -> argparse.Namespace:
         "--run",
         default="latest",
         help="Run id (default: latest).",
+    )
+    parser.add_argument(
+        "--attempt",
+        help="Use a numbered attempt file (e.g. 1 or 3). Use 'latest' for most recent.",
+    )
+    parser.add_argument(
+        "--new-attempt",
+        action="store_true",
+        help="Create a new numbered attempt file and use it.",
     )
     parser.add_argument(
         "--target",
@@ -66,6 +78,55 @@ def load_best_plan(problem_dir: Path) -> Optional[Dict[str, Any]]:
     except Exception:
         return None
     return data if isinstance(data, dict) else None
+
+
+def ensure_attempts_dir(lean_dir: Path) -> Path:
+    attempts_dir = lean_dir / "attempts"
+    attempts_dir.mkdir(parents=True, exist_ok=True)
+    readme_path = attempts_dir / "README.md"
+    if not readme_path.exists():
+        readme_path.write_text(
+            "# Lean Attempts\n\n"
+            "Store iterative attempts as attempt_001.lean, attempt_002.lean, ...\n"
+            "Use `tools/formalizer_loop.py --attempt latest --check` to validate.\n",
+            encoding="utf-8",
+        )
+    return attempts_dir
+
+
+def list_attempt_indices(attempts_dir: Path) -> List[int]:
+    indices: List[int] = []
+    for path in attempts_dir.glob(f"{ATTEMPT_PREFIX}*.lean"):
+        match = ATTEMPT_PATTERN.match(path.name)
+        if match:
+            try:
+                indices.append(int(match.group(1)))
+            except ValueError:
+                continue
+    return sorted(indices)
+
+
+def next_attempt_index(attempts_dir: Path) -> int:
+    indices = list_attempt_indices(attempts_dir)
+    return (indices[-1] + 1) if indices else 1
+
+
+def is_placeholder(text: str) -> bool:
+    return text.strip().startswith("-- Paste Lean code below")
+
+
+def create_attempt(
+    *,
+    attempts_dir: Path,
+    index: int,
+    base_text: Optional[str] = None,
+) -> Path:
+    path = attempts_dir / f"{ATTEMPT_PREFIX}{index:03d}.lean"
+    if path.exists():
+        return path
+    content = base_text if base_text and not is_placeholder(base_text) else PLACEHOLDER_LEAN
+    path.write_text(content, encoding="utf-8")
+    return path
 
 
 def build_prompt(
@@ -115,6 +176,7 @@ def write_scaffold(
 ) -> Path:
     lean_dir = run_dir / "lean"
     lean_dir.mkdir(parents=True, exist_ok=True)
+    ensure_attempts_dir(lean_dir)
 
     frozen_path = problem_dir / "statement" / "frozen_v1.md"
     frozen_text = frozen_path.read_text(encoding="utf-8") if frozen_path.exists() else ""
@@ -155,7 +217,17 @@ def run_check(root: Path, target: Path, run_dir: Path) -> int:
         text=True,
         check=False,
     )
-    log_path = run_dir / "lean" / "formalizer_last_build.log"
+    lean_dir = run_dir / "lean"
+    attempts_dir = lean_dir / "attempts"
+    log_path = lean_dir / "formalizer_last_build.log"
+    feedback_path = lean_dir / "formalizer_feedback.md"
+    try:
+        rel = target.relative_to(attempts_dir)
+        stem = rel.stem
+        log_path = attempts_dir / f"{stem}_build.log"
+        feedback_path = attempts_dir / f"{stem}_feedback.md"
+    except ValueError:
+        pass
     log_path.write_text(
         (result.stdout or "") + "\n" + (result.stderr or ""),
         encoding="utf-8",
@@ -173,7 +245,7 @@ def run_check(root: Path, target: Path, run_dir: Path) -> int:
         (result.stdout or "") + (result.stderr or ""),
         "```",
     ]
-    (run_dir / "lean" / "formalizer_feedback.md").write_text(
+    feedback_path.write_text(
         "\n".join(feedback_lines).rstrip() + "\n",
         encoding="utf-8",
     )
@@ -206,12 +278,42 @@ def main() -> int:
     )
     solver_scaffold.log_event(root, f"formalizer scaffold for {problem_id} in {run_dir.name}")
 
-    if args.check:
-        if args.target:
-            target = Path(args.target)
-            if not target.is_absolute():
-                target = root / target
+    target: Optional[Path] = None
+    lean_dir = run_dir / "lean"
+    attempts_dir = ensure_attempts_dir(lean_dir)
+    if args.new_attempt:
+        base_text = None
+        if response_path.exists():
+            base_text = response_path.read_text(encoding="utf-8")
+        attempt_index = next_attempt_index(attempts_dir)
+        target = create_attempt(
+            attempts_dir=attempts_dir, index=attempt_index, base_text=base_text
+        )
+        print(f"Created new attempt: {target.relative_to(root)}")
+    elif args.attempt:
+        attempt_label = args.attempt.strip().lower()
+        if attempt_label == "latest":
+            indices = list_attempt_indices(attempts_dir)
+            if not indices:
+                target = create_attempt(attempts_dir=attempts_dir, index=1)
+            else:
+                target = attempts_dir / f"{ATTEMPT_PREFIX}{indices[-1]:03d}.lean"
         else:
+            if not attempt_label.isdigit():
+                print("ERROR: --attempt must be a number or 'latest'")
+                return 2
+            index = int(attempt_label)
+            target = attempts_dir / f"{ATTEMPT_PREFIX}{index:03d}.lean"
+            if not target.exists():
+                print(f"ERROR: attempt not found: {target.relative_to(root)}")
+                return 1
+    elif args.target:
+        target = Path(args.target)
+        if not target.is_absolute():
+            target = root / target
+
+    if args.check:
+        if target is None:
             target = response_path
         return run_check(root, target, run_dir)
 
