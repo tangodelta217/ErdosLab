@@ -23,5 +23,6 @@
 ## Automation (optional)
 - Use `python3 tools/auto_problem.py 379 --title "Erdos Problem #379"` to scaffold a new problem.
 - The script uses `tools/new_problem.py` and `tools/set_active.py`, freezes the statement, prefills docs, and runs checks.
+- The literature scout runs by default and writes `candidates.md/json`, `queries.json`, and `triage.md` (best-effort; offline-safe).
 - Useful flags: `--no-fetch` (offline placeholders), `--no-lean` (skip Lean import), `--skip-checks` (skip policy/build).
 - It also writes `problems/<ID>/report/forum_post.md` as a forum-ready draft (skip with `--no-forum`).

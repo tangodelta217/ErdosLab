@@ -16,6 +16,8 @@ from pathlib import Path
 from typing import Iterable, Optional, Tuple
 from urllib.request import urlopen
 
+import literature_scout
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -432,15 +434,20 @@ def main() -> int:
     if not args.no_lean and lean_url:
         lean_path = root / "ErdosLab" / "Problems" / f"{problem_id}.lean"
         if lean_path.exists() and not args.force:
-            print(f"ERROR: Lean file already exists: {lean_path}")
-            return 1
-        try:
-            lean_bytes, lean_text = fetch_url(lean_url)
-        except Exception as exc:
-            print(f"ERROR: failed to fetch Lean file: {lean_url}\n{exc}")
-            return 1
-        lean_path.write_bytes(lean_bytes)
-        lean_imported = True
+            try:
+                lean_text = lean_path.read_text(encoding="utf-8")
+            except Exception as exc:
+                print(f"ERROR: failed to read existing Lean file: {lean_path}\n{exc}")
+                return 1
+            lean_imported = True
+        else:
+            try:
+                lean_bytes, lean_text = fetch_url(lean_url)
+            except Exception as exc:
+                print(f"ERROR: failed to fetch Lean file: {lean_url}\n{exc}")
+                return 1
+            lean_path.write_bytes(lean_bytes)
+            lean_imported = True
 
         all_path = root / "ErdosLab" / "All.lean"
         import_line = f"import ErdosLab.Problems.{problem_id}"
@@ -501,6 +508,20 @@ def main() -> int:
     blueprint_path = problem_dir / "blueprint.md"
     if not blueprint_path.exists():
         write_text(blueprint_path, render_blueprint())
+
+    try:
+        literature_scout.run_literature_scout(
+            problem_dir=problem_dir,
+            problem_id=problem_id,
+            problem_number=number,
+            title=args.title,
+            statement_text=statement_text,
+            offline=args.no_fetch,
+            cache_dir=root / "tools" / "literature_cache",
+            log_path=root / "logs" / "literature_scout.log",
+        )
+    except Exception as exc:  # pylint: disable=broad-except
+        print(f"WARNING: literature scout failed: {exc}")
 
     if not args.skip_checks:
         run(["bash", "tools/check.sh"], root)
