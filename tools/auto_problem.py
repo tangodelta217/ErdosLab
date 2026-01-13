@@ -509,6 +509,16 @@ def main() -> int:
     if not blueprint_path.exists():
         write_text(blueprint_path, render_blueprint())
 
+    prompt_text = literature_scout.render_chatgpt_prompt(
+        problem_id=problem_id,
+        problem_number=number,
+        title=args.title,
+        problem_url=problem_url,
+        forum_url=forum_url,
+        statement_text=statement_text,
+    )
+    literature_scout.write_chatgpt_files(literature_dir, prompt_text)
+
     try:
         literature_scout.run_literature_scout(
             problem_dir=problem_dir,

@@ -50,6 +50,8 @@ STOPWORDS = {
     "true",
 }
 
+CHATGPT_PROMPT_VERSION = "v1"
+
 
 def now_iso() -> str:
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace(
@@ -719,12 +721,13 @@ def write_candidates_json(
     candidates: List[Dict[str, Any]],
     queries: List[Dict[str, Any]],
     errors: List[str],
+    solver_used_scout: bool = False,
 ) -> None:
     payload = {
         "problem_id": problem_id,
         "generated_at": generated_at,
         "offline": offline,
-        "solver_used_scout": False,
+        "solver_used_scout": solver_used_scout,
         "queries": queries,
         "candidates": candidates,
         "errors": errors,
@@ -749,6 +752,83 @@ def write_triage_md(path: Path, candidates: List[Dict[str, Any]], generated_at: 
         year = cand.get("year") or "unknown year"
         lines.append(f"- [ ] {identifier} ({year}) - {title} [NEEDS_REVIEW]")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def render_chatgpt_prompt(
+    *,
+    problem_id: str,
+    problem_number: int,
+    title: Optional[str],
+    problem_url: str,
+    forum_url: str,
+    statement_text: Optional[str],
+) -> str:
+    keywords = extract_keywords(statement_text, limit=10)
+    keyword_line = ", ".join(keywords) if keywords else "none"
+    statement = statement_text or "TBD (statement unavailable)."
+    title_line = title or f"Erdos Problem #{problem_number}"
+    return (
+        "# ChatGPT Pro Literature Scout Prompt (manual)\n"
+        f"\nVersion: {CHATGPT_PROMPT_VERSION}\n"
+        "\nYou are assisting a literature scout for an Erdos problem. "
+        "Your task is to find candidate references in the mathematical literature. "
+        "Do NOT claim the problem is solved. Do NOT mark anything as verified. "
+        "Only output candidates with verifiable identifiers (DOI/arXiv/zbMATH/OpenAlex). "
+        "If you cannot find suitable candidates, return an empty list and include an error note.\n"
+        "\nProblem context:\n"
+        f"- problem_id: {problem_id}\n"
+        f"- title: {title_line}\n"
+        f"- problem_url: {problem_url}\n"
+        f"- forum_url: {forum_url}\n"
+        f"- keywords: {keyword_line}\n"
+        "\nFrozen statement:\n"
+        f"{statement}\n"
+        "\nOutput format (STRICT): return exactly one JSON object in a single ```json``` block.\n"
+        "Do not include extra prose outside the JSON.\n"
+        "\nRequired JSON schema:\n"
+        "{\n"
+        f'  \"problem_id\": \"{problem_id}\",\n'
+        "  \"generated_at\": \"YYYY-MM-DD\",\n"
+        "  \"solver_used_scout\": false,\n"
+        "  \"queries\": [\n"
+        "    {\"query\": \"...\", \"notes\": \"...\"}\n"
+        "  ],\n"
+        "  \"candidates\": [\n"
+        "    {\n"
+        "      \"id\": \"10.1234/abcd\" | \"2101.01234\" | \"3138648\" | \"https://openalex.org/W...\",\n"
+        "      \"id_type\": \"doi\" | \"arxiv\" | \"zbmath\" | \"openalex\",\n"
+        "      \"title\": \"...\",\n"
+        "      \"authors\": [\"...\"],\n"
+        "      \"year\": \"YYYY\",\n"
+        "      \"url\": \"https://...\",\n"
+        "      \"confidence\": 0.0,\n"
+        "      \"reasons\": [\"why this might be relevant\"],\n"
+        "      \"status\": \"NEEDS_REVIEW\"\n"
+        "    }\n"
+        "  ],\n"
+        "  \"errors\": [\"... optional ...\"]\n"
+        "}\n"
+        "\nRules:\n"
+        "- Include ONLY candidates with verifiable identifiers.\n"
+        "- Provide at least one explicit reason per candidate.\n"
+        "- Keep status = NEEDS_REVIEW.\n"
+        "- Max 20 candidates.\n"
+    )
+
+
+def write_chatgpt_files(
+    literature_dir: Path,
+    prompt_text: str,
+) -> None:
+    ensure_dir(literature_dir)
+    prompt_path = literature_dir / "chatgpt_prompt.md"
+    response_path = literature_dir / "chatgpt_response.md"
+    prompt_path.write_text(prompt_text.rstrip() + "\n", encoding="utf-8")
+    if not response_path.exists():
+        response_path.write_text(
+            "# Paste ChatGPT Pro output below\n\n",
+            encoding="utf-8",
+        )
 
 
 def run_literature_scout(
@@ -835,6 +915,7 @@ def run_literature_scout(
         deduped,
         queries_log,
         errors,
+        solver_used_scout=False,
     )
     write_queries_json(literature_dir / "queries.json", queries_log, generated_at)
     write_triage_md(literature_dir / "triage.md", deduped, generated_at)
