@@ -1,0 +1,30 @@
+{
+  "problem_id": "P0379",
+  "title": "Erdos Problem #379",
+  "generated_at": "2026-01-13T02:09:39Z",
+  "problem_url": "https://www.erdosproblems.com/379",
+  "forum_url": "https://www.erdosproblems.com/forum/thread/379",
+  "statement_text": "Let $S(n)$ denote the largest integer such that, for all $1\\leq k<n$, the binomial coefficient $\\binom{n}{k}$ is divisible by $p^{S(n)}$ for some prime $p$ (depending on $k$). Is it true that\\[\\limsup S(n)=\\infty?\\]",
+  "keywords": [
+    "binomial",
+    "coefficient",
+    "denote",
+    "depending",
+    "divisible",
+    "integer",
+    "largest",
+    "prime",
+    "some",
+    "such"
+  ],
+  "literature_candidates_path": "/home/tangodelta/Escritorio/ErdosLab/problems/P0379/literature/candidates.json",
+  "claim_state": "solved",
+  "evidence": [
+    {
+      "type": "lean",
+      "file": "ErdosLab/Problems/P0379.lean",
+      "theorem": "erdos_379"
+    }
+  ],
+  "notes": "Do not treat candidates as verified."
+}

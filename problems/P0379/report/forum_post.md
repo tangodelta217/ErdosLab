@@ -2,7 +2,7 @@
 
 Status:
 - claim.state: solved
-- repo commit: a1c4fa9
+- repo commit: 79a690b
 
 Sources:
 - problem page: https://www.erdosproblems.com/379 (accessed 2026-01-13)

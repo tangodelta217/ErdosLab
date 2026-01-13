@@ -1,6 +1,6 @@
 {
   "problem_id": "P0379",
-  "generated_at": "2026-01-13T01:32:03Z",
+  "generated_at": "2026-01-13T02:09:39Z",
   "offline": false,
   "solver_used_scout": false,
   "queries": [
@@ -11,7 +11,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "crossref",
@@ -20,7 +20,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "arxiv",
@@ -29,7 +29,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "zbmath",
@@ -38,7 +38,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "semantic_scholar",
@@ -47,7 +47,7 @@
       "cache_hit": false,
       "status": "skipped",
       "error": "missing SEMANTIC_SCHOLAR_API_KEY",
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "openalex",
@@ -56,7 +56,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "crossref",
@@ -65,7 +65,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "arxiv",
@@ -74,7 +74,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "zbmath",
@@ -83,7 +83,7 @@
       "cache_hit": false,
       "status": "error",
       "error": "HTTP Error 404: Not Found",
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "semantic_scholar",
@@ -92,7 +92,7 @@
       "cache_hit": false,
       "status": "skipped",
       "error": "missing SEMANTIC_SCHOLAR_API_KEY",
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "openalex",
@@ -101,7 +101,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "crossref",
@@ -110,7 +110,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "arxiv",
@@ -119,7 +119,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "zbmath",
@@ -128,7 +128,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "semantic_scholar",
@@ -137,7 +137,7 @@
       "cache_hit": false,
       "status": "skipped",
       "error": "missing SEMANTIC_SCHOLAR_API_KEY",
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     }
   ],
   "candidates": [
@@ -159,7 +159,7 @@
           "provider": "crossref",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -182,7 +182,7 @@
           "provider": "crossref",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -207,7 +207,7 @@
           "provider": "crossref",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -232,7 +232,7 @@
           "provider": "arxiv",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -258,7 +258,7 @@
           "provider": "arxiv",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -283,7 +283,7 @@
           "provider": "arxiv",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -308,7 +308,7 @@
           "provider": "crossref",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -333,7 +333,7 @@
           "provider": "arxiv",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -360,7 +360,7 @@
           "provider": "arxiv",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:binomial+coefficient+denote+depending+divisible+integer&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -385,7 +385,7 @@
           "provider": "crossref",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.crossref.org/works?query=binomial+coefficient+denote+depending+divisible+integer&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -414,14 +414,14 @@
           "provider": "arxiv",
           "query": "Erdos Problem #379",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+Problem+%23379&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         },
         {
           "provider": "arxiv",
           "query": "Erdos problem 379",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+problem+379&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:04Z",
+          "fetched_at": "2026-01-13T02:09:41Z",
           "cache_hit": true
         }
       ]
@@ -446,7 +446,7 @@
           "provider": "openalex",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -471,14 +471,14 @@
           "provider": "crossref",
           "query": "Erdos Problem #379",
           "source_url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         },
         {
           "provider": "crossref",
           "query": "Erdos problem 379",
           "source_url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
-          "fetched_at": "2026-01-13T01:32:04Z",
+          "fetched_at": "2026-01-13T02:09:41Z",
           "cache_hit": true
         }
       ]
@@ -503,14 +503,14 @@
           "provider": "crossref",
           "query": "Erdos Problem #379",
           "source_url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         },
         {
           "provider": "crossref",
           "query": "Erdos problem 379",
           "source_url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
-          "fetched_at": "2026-01-13T01:32:04Z",
+          "fetched_at": "2026-01-13T02:09:41Z",
           "cache_hit": true
         }
       ]
@@ -535,7 +535,7 @@
           "provider": "openalex",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -560,14 +560,14 @@
           "provider": "crossref",
           "query": "Erdos Problem #379",
           "source_url": "https://api.crossref.org/works?query=Erdos+Problem+%23379&rows=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         },
         {
           "provider": "crossref",
           "query": "Erdos problem 379",
           "source_url": "https://api.crossref.org/works?query=Erdos+problem+379&rows=5",
-          "fetched_at": "2026-01-13T01:32:04Z",
+          "fetched_at": "2026-01-13T02:09:41Z",
           "cache_hit": true
         }
       ]
@@ -593,14 +593,14 @@
           "provider": "openalex",
           "query": "Erdos Problem #379",
           "source_url": "https://api.openalex.org/works?search=Erdos+Problem+%23379&per_page=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         },
         {
           "provider": "openalex",
           "query": "Erdos problem 379",
           "source_url": "https://api.openalex.org/works?search=Erdos+problem+379&per_page=5",
-          "fetched_at": "2026-01-13T01:32:04Z",
+          "fetched_at": "2026-01-13T02:09:41Z",
           "cache_hit": true
         }
       ]
@@ -626,7 +626,7 @@
           "provider": "openalex",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]
@@ -651,14 +651,14 @@
           "provider": "arxiv",
           "query": "Erdos Problem #379",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+Problem+%23379&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         },
         {
           "provider": "arxiv",
           "query": "Erdos problem 379",
           "source_url": "http://export.arxiv.org/api/query?search_query=all:Erdos+problem+379&start=0&max_results=5",
-          "fetched_at": "2026-01-13T01:32:04Z",
+          "fetched_at": "2026-01-13T02:09:41Z",
           "cache_hit": true
         }
       ]
@@ -684,7 +684,7 @@
           "provider": "openalex",
           "query": "binomial coefficient denote depending divisible integer",
           "source_url": "https://api.openalex.org/works?search=binomial+coefficient+denote+depending+divisible+integer&per_page=5",
-          "fetched_at": "2026-01-13T01:32:03Z",
+          "fetched_at": "2026-01-13T02:09:39Z",
           "cache_hit": true
         }
       ]

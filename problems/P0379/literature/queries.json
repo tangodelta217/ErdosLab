@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-13T01:32:03Z",
+  "generated_at": "2026-01-13T02:09:39Z",
   "queries": [
     {
       "provider": "openalex",
@@ -8,7 +8,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "crossref",
@@ -17,7 +17,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "arxiv",
@@ -26,7 +26,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "zbmath",
@@ -35,7 +35,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "semantic_scholar",
@@ -44,7 +44,7 @@
       "cache_hit": false,
       "status": "skipped",
       "error": "missing SEMANTIC_SCHOLAR_API_KEY",
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "openalex",
@@ -53,7 +53,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "crossref",
@@ -62,7 +62,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "arxiv",
@@ -71,7 +71,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:03Z"
+      "timestamp": "2026-01-13T02:09:39Z"
     },
     {
       "provider": "zbmath",
@@ -80,7 +80,7 @@
       "cache_hit": false,
       "status": "error",
       "error": "HTTP Error 404: Not Found",
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "semantic_scholar",
@@ -89,7 +89,7 @@
       "cache_hit": false,
       "status": "skipped",
       "error": "missing SEMANTIC_SCHOLAR_API_KEY",
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "openalex",
@@ -98,7 +98,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "crossref",
@@ -107,7 +107,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "arxiv",
@@ -116,7 +116,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "zbmath",
@@ -125,7 +125,7 @@
       "cache_hit": true,
       "status": "ok",
       "error": null,
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     },
     {
       "provider": "semantic_scholar",
@@ -134,7 +134,7 @@
       "cache_hit": false,
       "status": "skipped",
       "error": "missing SEMANTIC_SCHOLAR_API_KEY",
-      "timestamp": "2026-01-13T01:32:04Z"
+      "timestamp": "2026-01-13T02:09:41Z"
     }
   ]
 }
