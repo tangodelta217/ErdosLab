@@ -16,7 +16,7 @@ import llm_utils
 
 DEFAULT_MAX_PLANS = int(os.getenv("SOLVER_MAX_PLANS", "8"))
 DEFAULT_MAX_LITERATURE = int(os.getenv("SOLVER_MAX_LITERATURE", "8"))
-PLACEHOLDER_RESPONSE = "# Paste ChatGPT Pro output below\n\n"
+PLACEHOLDER_RESPONSE = "# Paste internal tool Pro output below\n\n"
 PLACEHOLDER_NOTES = "# Notes\n\n"
 
 
@@ -229,7 +229,7 @@ def run_used(run_dir: Path) -> bool:
     response_path = run_dir / "planner_response.md"
     if response_path.exists():
         content = response_path.read_text(encoding="utf-8").strip()
-        if content and not content.startswith("# Paste ChatGPT Pro output below"):
+        if content and not content.startswith("# Paste internal tool Pro output below"):
             return True
     plans_dir = run_dir / "plans"
     if plans_dir.is_dir() and any(plans_dir.glob("*.json")):

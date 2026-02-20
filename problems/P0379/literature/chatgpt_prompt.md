@@ -1,4 +1,4 @@
-# ChatGPT Pro Literature Scout Prompt (manual)
+# internal tool Pro Literature Scout Prompt (manual)
 
 Version: v1
 
