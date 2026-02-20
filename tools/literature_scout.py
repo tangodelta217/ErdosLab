@@ -51,7 +51,7 @@ STOPWORDS = {
     "true",
 }
 
-CHATGPT_PROMPT_VERSION = "v1"
+internal reference_PROMPT_VERSION = "v1"
 LLM_PLACEHOLDER = "# Paste model output below\n\n"
 
 
@@ -756,7 +756,7 @@ def write_triage_md(path: Path, candidates: List[Dict[str, Any]], generated_at: 
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def render_chatgpt_prompt(
+def render_internal reference_prompt(
     *,
     problem_id: str,
     problem_number: int,
@@ -770,8 +770,8 @@ def render_chatgpt_prompt(
     statement = statement_text or "TBD (statement unavailable)."
     title_line = title or f"Erdos Problem #{problem_number}"
     return (
-        "# ChatGPT Pro Literature Scout Prompt (manual)\n"
-        f"\nVersion: {CHATGPT_PROMPT_VERSION}\n"
+        "# internal tool Pro Literature Scout Prompt (manual)\n"
+        f"\nVersion: {internal reference_PROMPT_VERSION}\n"
         "\nYou are assisting a literature scout for an Erdos problem. "
         "Your task is to find candidate references in the mathematical literature. "
         "Do NOT claim the problem is solved. Do NOT mark anything as verified. "
@@ -818,17 +818,17 @@ def render_chatgpt_prompt(
     )
 
 
-def write_chatgpt_files(
+def write_internal reference_files(
     literature_dir: Path,
     prompt_text: str,
 ) -> None:
     ensure_dir(literature_dir)
-    prompt_path = literature_dir / "chatgpt_prompt.md"
-    response_path = literature_dir / "chatgpt_response.md"
+    prompt_path = literature_dir / "internal reference_prompt.md"
+    response_path = literature_dir / "internal reference_response.md"
     prompt_path.write_text(prompt_text.rstrip() + "\n", encoding="utf-8")
     if not response_path.exists():
         response_path.write_text(
-            "# Paste ChatGPT Pro output below\n\n",
+            "# Paste internal tool Pro output below\n\n",
             encoding="utf-8",
         )
 

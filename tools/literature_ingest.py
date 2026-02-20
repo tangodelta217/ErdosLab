@@ -30,11 +30,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("problem", help="Problem id (e.g. 379 or P0379).")
     parser.add_argument(
         "--response",
-        help="Path to chatgpt_response.md (defaults to problems/<ID>/literature/chatgpt_response.md).",
+        help="Path to internal reference_response.md (defaults to problems/<ID>/literature/internal reference_response.md).",
     )
     parser.add_argument(
         "--source",
-        help="Override provenance label (default: chatgpt_pro_manual or manual_llm).",
+        help="Override provenance label (default: internal reference_pro_manual or manual_llm).",
     )
     return parser.parse_args()
 
@@ -184,7 +184,7 @@ def main() -> int:
     response_path = (
         Path(args.response)
         if args.response
-        else (literature_dir / "chatgpt_response.md")
+        else (literature_dir / "internal reference_response.md")
     )
     if not response_path.exists():
         print(f"ERROR: response file not found: {response_path}")
@@ -203,8 +203,8 @@ def main() -> int:
 
     source = args.source
     if not source:
-        if response_path.name == "chatgpt_response.md":
-            source = "chatgpt_pro_manual"
+        if response_path.name == "internal reference_response.md":
+            source = "internal reference_pro_manual"
         else:
             source = "manual_llm"
 
@@ -219,7 +219,7 @@ def main() -> int:
             manual_candidates.append(candidate)
 
     response_sha = hashlib.sha256(response_text.encode("utf-8")).hexdigest()
-    prompt_path = literature_dir / "chatgpt_prompt.md"
+    prompt_path = literature_dir / "internal reference_prompt.md"
     prompt_sha = None
     if prompt_path.exists():
         prompt_sha = hashlib.sha256(
@@ -237,7 +237,7 @@ def main() -> int:
     existing_errors = existing.get("errors") if isinstance(existing.get("errors"), list) else []
 
     manual_query = {
-        "provider": "chatgpt_pro_manual",
+        "provider": "internal reference_pro_manual",
         "query": "manual",
         "url": None,
         "cache_hit": False,

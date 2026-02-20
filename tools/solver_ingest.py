@@ -202,7 +202,7 @@ def main() -> int:
     source = args.source
     if not source:
         if response_path.name == "planner_response.md":
-            source = "chatgpt_pro_manual"
+            source = "internal reference_pro_manual"
         else:
             source = "manual_llm"
 

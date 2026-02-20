@@ -1,2 +1,2 @@
-# Paste ChatGPT Pro output below
+# Paste internal tool Pro output below
 

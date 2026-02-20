@@ -1,3 +1,15 @@
 /.lake
 __pycache__/
 /tools/literature_cache
+.internal/
+obj/
+tests/obj/
+tests/bin/
+dist/
+.pocl_kcache/
+*.o
+*.ali
+*.stdout
+*.stderr
+*.bexch
+docs/VV/Execution_Logs/local/
